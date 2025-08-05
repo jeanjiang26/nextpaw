@@ -35,3 +35,4 @@ build/
 # Ignore environment variables and logs
 .env
 *.log
+src/main/resources/application.properties
