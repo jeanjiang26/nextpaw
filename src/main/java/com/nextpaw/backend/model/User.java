@@ -2,6 +2,9 @@ package com.nextpaw.backend.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "app_user") // <-- fixes the issue
 public class User {
@@ -13,6 +16,11 @@ public class User {
     private String name;
     private String email;
     private String lifestyle;
+
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<FavoritePet> favorites = new ArrayList<>(); // each member can have many favorite pets
+
 
     // Getters and setters
     public Long getId() { return id; }
