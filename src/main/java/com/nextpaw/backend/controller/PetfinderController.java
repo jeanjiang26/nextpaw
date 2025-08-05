@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
-// api controller that receives http requests from frontend or postman and delegates to service layer
 @RestController
 @RequestMapping("/api/pets")
 @CrossOrigin(origins = "*")
@@ -25,9 +24,31 @@ public class PetfinderController {
             @RequestParam(required = false) String size,
             @RequestParam(required = false, name = "good_with_children") Boolean goodWithChildren,
             @RequestParam(required = false, name = "good_with_dogs") Boolean goodWithDogs,
-            @RequestParam(required = false, name = "good_with_cats") Boolean goodWithCats
+            @RequestParam(required = false, name = "good_with_cats") Boolean goodWithCats,
+            @RequestParam(required = false, name = "house_trained") Boolean houseTrained,
+            @RequestParam(required = false, name = "spayed_neutered") Boolean spayedNeutered,
+            @RequestParam(required = false, name = "special_needs") Boolean specialNeeds,
+            @RequestParam(required = false) Boolean declawed,
+            @RequestParam(required = false, name = "has_shots") Boolean hasShots,
+            @RequestParam(required = false, name = "shots_current") Boolean shotsCurrent
     ) {
-        return petfinderService.searchPets(location, type, breed, age, gender, size, goodWithChildren, goodWithDogs, goodWithCats);
+        return petfinderService.searchPets(
+                location,
+                type,
+                breed,
+                age,
+                gender,
+                size,
+                goodWithChildren,
+                goodWithDogs,
+                goodWithCats,
+                houseTrained,
+                spayedNeutered,
+                specialNeeds,
+                declawed,
+                hasShots,
+                shotsCurrent
+        );
     }
 
     // ✅ Get dog breeds
@@ -42,10 +63,9 @@ public class PetfinderController {
         return petfinderService.getCatBreeds();
     }
 
-
+    // ✅ Info about 1 specific pet
     @GetMapping("/{id}")
     public Map<String, Object> getPetById(@PathVariable String id) {
         return petfinderService.getPetById(id);
     }
-
 }

@@ -26,15 +26,23 @@ public class PetfinderService {
     private long tokenExpiration = 0;
 
     public Map<String, Object> searchPets(
-            String location,
-            String type,
+            String location, // city, zip code
+            String type, // dog, cat
             String breed,
             String age,
             String gender,
-            String size,
+            String size, // small, medium, large, xlarge
             Boolean goodWithChildren,
             Boolean goodWithDogs,
-            Boolean goodWithCats
+            Boolean goodWithCats,
+
+
+            Boolean houseTrained,
+            Boolean spayedNeutered,
+            Boolean specialNeeds,
+            Boolean declawed,
+            Boolean hasShots,
+            Boolean shotsCurrent
     ) {
         ensureAccessToken();
 
@@ -72,6 +80,25 @@ public class PetfinderService {
         }
         if (goodWithCats != null) {
             urlBuilder.append("&good_with_cats=").append(goodWithCats);
+        }
+
+        if (houseTrained != null) {
+            urlBuilder.append("&house_trained=").append(houseTrained);
+        }
+        if (spayedNeutered != null) {
+            urlBuilder.append("&spayed_neutered=").append(spayedNeutered);
+        }
+        if (specialNeeds != null) {
+            urlBuilder.append("&special_needs=").append(specialNeeds);
+        }
+        if (declawed != null) {
+            urlBuilder.append("&declawed=").append(declawed);
+        }
+        if (hasShots != null) {
+            urlBuilder.append("&has_shots=").append(hasShots);
+        }
+        if (shotsCurrent != null) {
+            urlBuilder.append("&shots_current=").append(shotsCurrent);
         }
 
         ResponseEntity<Map> response = restTemplate.exchange(

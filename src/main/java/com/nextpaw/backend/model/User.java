@@ -1,7 +1,6 @@
 package com.nextpaw.backend.model;
 
 import jakarta.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,12 +14,10 @@ public class User {
 
     private String name;
     private String email;
-    private String lifestyle;
-
+    private String password; // ✅ Added
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<FavoritePet> favorites = new ArrayList<>(); // each member can have many favorite pets
-
+    private List<FavoritePet> favorites = new ArrayList<>();
 
     // Getters and setters
     public Long getId() { return id; }
@@ -32,6 +29,6 @@ public class User {
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
-    public String getLifestyle() { return lifestyle; }
-    public void setLifestyle(String lifestyle) { this.lifestyle = lifestyle; }
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
 }

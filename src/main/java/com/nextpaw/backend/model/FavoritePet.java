@@ -16,7 +16,7 @@ public class FavoritePet {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     // Getters and Setters
